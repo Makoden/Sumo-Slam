@@ -6,7 +6,7 @@ public class Enemy : MonoBehaviour
 {   [SerializeField]
     private float speed = 3f;
     private Rigidbody enemyRb;
-    private GameObject player;
+    GameObject player;
 
     // Start is called before the first frame update
     void Start()
@@ -18,11 +18,13 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        player = GameObject.Find("Player");
+
         // Causes enemy to go towards player
         Vector3 lookDirection = (player.transform.position - transform.position).normalized;
 
         enemyRb.AddForce(lookDirection * speed);
-        if (transform.position.y <= -15)
+        if (transform.position.y <= -5)
         {
             Destroy(gameObject);
         }
